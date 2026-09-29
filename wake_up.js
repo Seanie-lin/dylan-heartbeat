@@ -492,8 +492,8 @@ ${historyText}`
     body: JSON.stringify({
       model: process.env.MODEL_NAME,
       messages: wakeMessages,
-      temperature: 0.8,
-      top_p: 0.95,
+      
+      
       stream: false
     })
   });
