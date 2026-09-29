@@ -424,8 +424,9 @@ async function runWakeUp() {
   const weatherContext = await fetchWeatherContext();
   const wakePrompt = buildWakePrompt(getChinaTimeString(), diffMinutes, weatherContext);
   const cleanMessages = stripPosition(messages);
-
+  const lastAssistantMessage = [...cleanMessages].reverse().find(msg => msg.role === "assistant");
   const historyText = cleanMessages
+    .filter(msg => msg !== lastAssistantMessage)
     .filter(msg => msg.role !== "system")
     .filter(msg => {
       const c = normalizeContentToText(msg.content);
