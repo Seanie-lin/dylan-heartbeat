@@ -445,7 +445,7 @@ async function runWakeUp() {
 
   const baseSystemPrompt = cleanMessages.find(msg => msg.role === "system");
   const cleanSP = baseSystemPrompt 
-    ? normalizeContentToText(baseSystemPrompt.content).split("## Memories")[0].trim()
+    ? normalizeContentToText(baseSystemPrompt.content).trim()
     : "";
 
   const wakeMessages = [
