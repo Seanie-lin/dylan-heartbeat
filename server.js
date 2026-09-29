@@ -711,6 +711,11 @@ app.post("/v1/chat/completions", async (req, reply) => {
       },
       body: JSON.stringify({ ...body, messages: llmMessages })
     });
+    if (response.ok) fs.writeFileSync(
+  "/tmp/last_chatbox_request.json",
+  JSON.stringify({ ...body, messages: llmMessages }),
+  { mode: 0o600 }
+);
 
     const upstreamContentType = response.headers.get("content-type") || "";
     const shouldStreamResponse = requestedStream || upstreamContentType.includes("text/event-stream");
